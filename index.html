@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container p-4">
+      <h3>模板練習作業：Ajax 資料內容呈現</h3>
+      <p>本作業一定要用到元件。</p>
+      <div class="alert alert-secondary">
+        <p>提示：</p>
+        <ol class="mb-0">
+          <li>將資料內容透過 "元件" 呈現</li>
+          <li>製作城市過濾選項</li>
+          <li>將內層資料透過 emit 傳遞到外層 (作為另一個關注城市的呈現)</li>
+          <li>依據不同污染呈現不同色彩</li>
+          <li>加分題：透過 localStorage 儲存上次關注的城市</li>
+        </ol>
+      </div>
+      <div id="app">
+        <select
+          id=""
+          class="form-control mb-3"
+          v-if="state === 'active'"
+          v-model="filter"
+        >
+          <option value="">--- 請選擇城市 ---</option>
+          <option v-for="county in location" :value="county">
+            {{ county }}
+          </option>
+        </select>
+        <div>
+          <h4>關注城市</h4>
+          <div class="card-columns">
+            <concerned-card
+              v-for="data in concernedData"
+              :site="data"
+              :key="data.SiteName"
+              @unstarred="removeConcerned($event)"
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="card-columns">
+          <base-card
+            v-for="data in filteredData"
+            :site="data"
+            :key="data.SiteName"
+            @starred="getConcerned($event)"
+          />
+        </div>
+      </div>
+    </div>
+    <script type></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
