@@ -87,7 +87,7 @@ const app = new Vue({
   methods: {
     getData() {
       const vm = this;
-      const api = 'http://opendata2.epa.gov.tw/AQI.json';
+      const api = 'https://opendata2.epa.gov.tw/AQI.json';
 
       // 使用 Axios ajax
       axios
